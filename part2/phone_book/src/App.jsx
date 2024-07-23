@@ -7,6 +7,8 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const handleSubmit = (e)=>{
     e.preventDefault()
+    if(persons.some(person=>person.name===newName)) 
+      return alert(`${newName} es already added to phoneBook`)
     setPersons(persons.concat({
       name: newName
     }))
