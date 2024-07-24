@@ -10,13 +10,13 @@ export class PhoneService {
     const request =  axios.post(baseUrl, person)
     return request.then((response) => response.data);
   }
-  static put({person}) {
-    const request =  axios.put(`${baseUrl}/${person.id}`, person)
+  static updatePerson({id, person}) {
+    const request =  axios.put(`${baseUrl}/${id}`, person)
     return request.then((response) => response.data);
   }
-  static dalete() {
-    const request =  axios.delete(`${baseUrl}/${person.id}`)
-    return request.then((response) => response.data);
+  static dalete({id}) {
+    const request =  axios.delete(`${baseUrl}/${id}`)
+    return request.then((response) => response.data)
   }
 }
 
