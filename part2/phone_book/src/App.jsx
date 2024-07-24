@@ -4,6 +4,7 @@ import { Persons } from "./components/Persons";
 import { PersonForm } from "./components/PersonForm";
 import { PersonDetails } from "./components/PersonDetails";
 import axios from 'axios'
+import { PhoneService } from "./phonesService";
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
@@ -11,9 +12,8 @@ const App = () => {
   const [search, setSearch] = useState("");
   
   useEffect(()=>{
-    const newPersons = axios.get('http://localhost:3001/persons')
-    .then(response=>{
-      setPersons(response.data)
+    PhoneService.getAll().then(returnedPersons=>{
+      setPersons(returnedPersons)
     })
     
   }, [])

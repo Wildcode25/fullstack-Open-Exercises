@@ -4,9 +4,9 @@ export const Filter = ({ persons, search, handleSearch }) => {
     (person) => person.name.split(" ")[0].toLowerCase() === search.toLowerCase()
   );
   return (
-  <>
-  filter show with: <input value={search} onChange={handleSearch} />
-  <Persons persons={filtedPersons} />
-  </>
-  )
+    <>
+      filter show with: <input value={search} onChange={handleSearch} />
+      <Persons persons={filtedPersons} />
+    </>
+  );
 };
