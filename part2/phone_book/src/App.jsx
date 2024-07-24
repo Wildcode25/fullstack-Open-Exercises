@@ -4,16 +4,17 @@ import { Persons } from "./components/Persons";
 import { PersonForm } from "./components/PersonForm";
 import { PersonDetails } from "./components/PersonDetails";
 import { PersonController } from "./personController";
-
+import { Notification } from "./components/Notification";
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNumber] = useState("");
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState(null);
   useEffect(() => {
-    PersonController.getAll().then(persons=>{
-      setPersons(persons)
-      setLoading(false)
+    PersonController.getAll().then((persons) => {
+      setPersons(persons);
+      setLoading(false);
     });
   }, []);
 
@@ -27,25 +28,31 @@ const App = () => {
         handle={{
           handleNewNameChange: (e) => setNewName(e.target.value),
           handleNewNumberChange: (e) => setNumber(e.target.value),
-          handleSubmit: (e)=>{
-            e.preventDefault()
-            PersonController.sendPerson({persons, person: {name: newName, number: newNumber}})
-            .then(returnedPersons=>{
-              setPersons(returnedPersons)
-              setLoading(false)
-            }
-            )
-            setNumber("")
-            setNewName("")
-            setLoading(true)
-          }
+          handleSubmit: (e) => {
+            e.preventDefault();
+            PersonController.sendPerson({
+              persons,
+              person: { name: newName, number: newNumber },
+            }).then((returnedPersons) => {
+              setPersons(returnedPersons);
+              setLoading(false);
+            })
+            setNumber("");
+            setNewName("");
+            setLoading(true);
+          },
         }}
         newName={newName}
         newNumber={newNumber}
       />
       <h2>Numbers</h2>
-      {loading ? <p>Loading...</p>:<Persons persons={persons} setPersons={setPersons} />}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Persons persons={persons} setPersons={setPersons} setMessage={setMessage}/>
+      )}
       <PersonDetails person={{ name: newName, number: newNumber }} />
+      <Notification message={message} />
     </>
   );
 };
