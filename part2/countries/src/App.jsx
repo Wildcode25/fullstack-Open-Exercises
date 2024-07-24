@@ -8,10 +8,12 @@ function App() {
   const [value, setValue] = useState('');
   const [countriesToShow, setCountries]=useState(null);
   useEffect(()=>{
+    if(value==='') return 
+    
     // axios.get(url).then(response=>response.data).then(countries=>{
-    //   countriesToShow = countries.filter(country=>country.name==value)
+    //   setCountries(countries.filter(country=>country.name.common.toLowerCase().includes(value.toLowerCase())))
     // })
-    if(value!=='')
+    
     setCountries(db.filter(country=>country.name.common.toLowerCase().includes(value.toLowerCase())))
   }, [value])
   return (
