@@ -24,18 +24,23 @@ a:hover {
 .message{
   display: flex;
   height: 100px;
-  width: 250px;
+  min-width: 150px;
   padding: 10px;
   background-color: #f7f7f7;
   justify-content: center;
   align-items: center;
   gap: 15px;
-  position: absolute;
-  right: 10%;
-  bottom: 5%;
+  position: fixed;
+  right: 5%;
   border-radius: 10px;
   box-shadow: 0 0 10px 0px black;
   animation: showMessage 1s forwards;
+}
+.messageContainer{
+  position: fixed;
+  width: 100vw;
+  bottom: 20%;
+
 }
 .error{
   color: red;
@@ -76,6 +81,7 @@ body {
   min-height: 100vh;
   justify-content: center;
   overflow: hidden;
+  overflow-y: auto;
 }
 
 h1 {

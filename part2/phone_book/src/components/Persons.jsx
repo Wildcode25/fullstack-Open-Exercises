@@ -11,6 +11,7 @@ export const Persons = ({persons, setPersons, setMessage})=>{
             setMessage({content: "Person deleted successfuly", isError: false})
             setTimeout(()=>setMessage(null), 2000)
         }).catch(()=>{
+            
             setMessage({content: `${person.name} is already deleted`, isError:true})
             setTimeout(()=>setMessage(null), 2000)
         });

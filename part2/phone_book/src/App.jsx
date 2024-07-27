@@ -34,8 +34,23 @@ const App = () => {
               persons,
               person: { name: newName, number: newNumber },
             }).then((returnedPersons) => {
+              
               setPersons(returnedPersons);
+              setMessage({
+                content: `${returnedPersons[returnedPersons.length-1].name} is added successfuly`,
+                isError: false
+              })
+              
+              setTimeout(()=>setMessage(null), 3000)
               setLoading(false);
+            }).catch((e)=>{
+              setMessage({
+                content: e.response.data.error,
+                isError: true
+              })
+              setTimeout(()=>setMessage(null), 3000)
+              setLoading(false);
+              console.log(e)
             })
             setNumber("");
             setNewName("");

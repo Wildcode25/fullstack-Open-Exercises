@@ -1,10 +1,13 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3001/persons";
+const baseUrl = "/api/persons";
 
 export class PhoneService {
   static getAll() {
     const request =  axios.get(baseUrl)
-    return request.then((response) => response.data);
+    return request.then((response) => {
+      console.log(response.data)
+      return response.data
+    });
   }
   static createPerson({person}) {
     const request =  axios.post(baseUrl, person)
